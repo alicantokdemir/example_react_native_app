@@ -1,27 +1,27 @@
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
-type LangOptions = 'pt-br' | 'en-us';
+type ThemeOptions = 'light' | 'dark';
 
-const defaultLang = 'pt-br';
+const defaultTheme = 'light';
 
-const LangContext = createContext<
+const ThemeContext = createContext<
   {
-    lang: LangOptions,
-    setLang: Dispatch<SetStateAction<LangOptions>>
+    theme: ThemeOptions,
+    setTheme: Dispatch<SetStateAction<ThemeOptions>>
   }
->({ lang: defaultLang, setLang: () => { } });
+>({ theme: defaultTheme, setTheme: () => { } });
 
-const useLang = useContext(LangContext);
+const useLang = useContext(ThemeContext);
 
-const LangProvider: React.FC = ({ children }) => {
-  const [lang, setLang] = useState<LangOptions>(defaultLang);
+const ThemeProvider: React.FC = ({ children }) => {
+  const [theme, setTheme] = useState<ThemeOptions>(defaultTheme);
 
   return (
-    <LangContext.Provider value={{ lang, setLang }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
-    </LangContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 
-const LangConsumer = LangContext.Consumer;
+const ThemeConsumer = ThemeContext.Consumer;
 
-export { useLang, LangProvider, LangConsumer };
+export { useLang, ThemeProvider, ThemeConsumer };
