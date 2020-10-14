@@ -1,5 +1,5 @@
-import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
-type LangOptions = 'pt-br' | 'en-us';
+import React, { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+import { LangOptions } from "../translations";
 
 const defaultLang = 'pt-br';
 
@@ -10,7 +10,7 @@ const LangContext = createContext<
   }
 >({ lang: defaultLang, setLang: () => { } });
 
-const useLang = useContext(LangContext);
+const useLang = () => useContext(LangContext);
 
 const LangProvider: React.FC = ({ children }) => {
   const [lang, setLang] = useState<LangOptions>(defaultLang);

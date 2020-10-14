@@ -1,5 +1,5 @@
-import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
-type ThemeOptions = 'light' | 'dark';
+import React, { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+import { ThemeOptions } from "../themes";
 
 const defaultTheme = 'light';
 
@@ -10,7 +10,7 @@ const ThemeContext = createContext<
   }
 >({ theme: defaultTheme, setTheme: () => { } });
 
-const useLang = useContext(ThemeContext);
+const useLang = () => useContext(ThemeContext);
 
 const ThemeProvider: React.FC = ({ children }) => {
   const [theme, setTheme] = useState<ThemeOptions>(defaultTheme);
